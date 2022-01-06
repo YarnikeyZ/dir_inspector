@@ -52,7 +52,7 @@ def output():
     elif colors == 'on':
         g = "\033[38;5;82m{}" .format("")
         w = "\033[38;5;231m{}" .format("")
-        colorsforprint = [w, "\033[38;5;11m{}" .format(""), "\033[38;5;9m{}" .format(""), "\033[38;5;208m{}" .format(""), "\033[38;5;28m{}" .format(""), "\033[38;5;30m{}" .format(""), "\033[38;5;245m{}" .format(""), "\033[38;5;69m{}" .format("")]
+        colorsforprint = [w, "\033[38;5;11m", "\033[38;5;9m", "\033[38;5;208m", "\033[38;5;28m", "\033[38;5;30m", "\033[38;5;245m", "\033[38;5;69m"]
         print(f'{g}Directory: {directory}{w}')
         for format, name , color in zip(formats, names, colorsforprint):
             filesprint(format, name, color, w)
