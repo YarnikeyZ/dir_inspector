@@ -1,30 +1,45 @@
 from os import listdir as ls
 from os import getcwd as gd
 
+f_code = ['.py', '.cpp']
+f_image = ['.bmp', '.tiff', '.tif', '.gif', 'jpeg', '.jpg', '.png', '.svg', '.webp']
+f_video = ['.avi', '.mpeg', '.wmv', '.mp4', '.mov', '.webm']
+f_document = ['.txt', '.doc', '.odt', '.rtf', '.html', '.pdf', '.ppt', '.pptx', '.xlsx']
+f_audio = ['.wav', '.ogg', '.mp3', '.flac']
+f_archive = ['.7z', '.cab', '.deb', '.gz', '.gz', '.jar', '.rar', '.rpm', '.tar', '.tar-gz', '.tgz', '.zip', '.zipx']
+
+def check_for_format(file: str, formats: list) -> bool:
+    for form in formats:
+        if form in file:
+            return True
+    return False
+
 def main():
     directory = (gd(), ls(gd()))
-    files = [[], [], [], [], [], [], [], []]
+    files = [[], [], [], [], [], [], [], [], []]
     for file in directory[1]:
         if '.' == file[0]:
             files[0].append(("Hidden", 245, file))
-        elif '.py' in file or '.cpp' in file:
+        elif check_for_format(file, f_code):
             files[1].append(("Code", 10, file))
-        elif '.bmp' in file or '.tiff' in file or '.tif' in file or '.gif' in file or 'jpeg' in file or '.jpg' in file or '.png' in file or '.svg' in file or 'webp' in file:
+        elif check_for_format(file, f_image):
             files[2].append(("Image", 226, file))
-        elif '.avi' in file or '.mpeg' in file or '.wmv' in file or '.mp4' in file or '.mov' in file or '.webm' in file:
+        elif check_for_format(file, f_video):
             files[3].append(("Video", 208, file))
-        elif '.txt' in file or '.doc' in file or '.odt' in file or '.rtf' in file or '.html' in file or '.pdf' in file:
-            files[4].append((("Text", 255, file)))
-        elif '.wav' in file or '.ogg' in file or '.mp3' in file or '.flac' in file:
+        elif check_for_format(file, f_document):
+            files[4].append(("Text", 255, file))
+        elif check_for_format(file, f_audio):
             files[5].append(("Audio", 124, file))
+        elif check_for_format(file, f_archive):
+            files[6].append(("Archive", 81, file))
         else:
             try:
                 ls(file)
-                files[6].append(("Directory", 27, file))
+                files[7].append(("Directory", 27, file))
             except NotADirectoryError:
-                files[7].append(("Etc", 93, file))
+                files[8].append(("Etc", 93, file))
             except PermissionError:
-                files[7].append(("Permission denied", 93, file))
+                files[8].append(("Permission denied", 93, file))
     print(f"\033[38;5;10mDirectory: {directory[0]}\033[0;0m")
     for file_type in files:
         try:
