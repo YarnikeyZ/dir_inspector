@@ -6,7 +6,7 @@ f_image = ['.bmp', '.tiff', '.tif', '.gif', 'jpeg', '.jpg', '.png', '.svg', '.we
 f_video = ['.avi', '.mpeg', '.wmv', '.mp4', '.mov', '.webm']
 f_document = ['.txt', '.doc', '.odt', '.rtf', '.html', '.pdf', '.ppt', '.pptx', '.xlsx']
 f_audio = ['.wav', '.ogg', '.mp3', '.flac']
-f_archive = ['.7z', '.cab', '.deb', '.gz', '.gz', '.jar', '.rar', '.rpm', '.tar', '.tar-gz', '.tgz', '.zip', '.zipx']
+f_archive = ['.7z', '.cab', '.deb', '.gz', '.jar', '.rar', '.rpm', '.tar', '.tar-gz', '.tgz', '.zip', '.zipx']
 
 def check_for_format(file: str, formats: list) -> bool:
     for form in formats:
